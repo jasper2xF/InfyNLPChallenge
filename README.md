@@ -26,10 +26,10 @@ For an example see the [model_eval method in decode.py](https://github.com/johnk
 
 ## Evaluate existing models
 
-1. Download models[here](https://data.mendeley.com/datasets/xvfs8b45h8/draft?a=3e2d4b4d-2381-400b-8d82-6fac79b3847b) 
+1. Download models [here](https://data.mendeley.com/datasets/xvfs8b45h8/draft?a=3e2d4b4d-2381-400b-8d82-6fac79b3847b) 
 (temporary sharing link, not published yet).
 2. Extract models to a 'tmp' directory in the tf-text-classification directory. The tmp directory should have multiple 
-folders names, e.g. 'smm4h_task2_full_godin_wide_filter_0_88_cv0' (as well as [...]_cv1, ... [...]_cv5), with a sub 
+folders, e.g. 'smm4h_task2_full_godin_wide_filter_0_88_cv0' (as well as [...]_cv1, ... [...]_cv5), with a sub 
 directory called 'best_model'. The subdirectory should include the necessary model files, e.g.:
     ```buildoutcfg
     LOCAL_PATH_TO_REPO/tf-test-classification/tmp/
