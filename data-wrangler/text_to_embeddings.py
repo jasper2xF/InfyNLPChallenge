@@ -1,18 +1,19 @@
 #!/usr/bin/env python3
 import sys
-sys.path.append('/datadrive/nlp/jasper/w2v/godin/word2vec_twitter_model/')
+sys.path.append('/home/jasper/data/nlp/word2vec_twitter_model/')
 from word2vecReader import Word2Vec
 from nltk.corpus import words
 import io
 import numpy
-from spacy.en import English
+from spacy.lang.en import English
 import numpy as np
 import argparse
 import math
 from tempfile import TemporaryFile
-sys.path.append('/datadrive/ML/jasper/python/embedding-evaluation/wordsim/')
+sys.path.append('/media/jasper/ssd-data/ws/embedding-evaluation/wordsim/')
 from wordsim import Wordsim
 import data_wrangler
+import gensim
 
 DEBUG = True
 
@@ -24,7 +25,7 @@ def text_to_embeddings_store(model_path, input_file, output_file, vector_dimensi
     # TODO: Refactor to call to text_to_embeddings
         #model_path = args.model_path_
     print("Loading the model, this can take some time...")
-    model = Word2Vec.load_word2vec_format(model_path, binary=True)
+    model = gensim.models.KeyedVectors.load(model_path)
     print("Loafing spaCy model, this can take some time...")
     nlp=English()
     #print(("The vocabulary size is: "+str(len(model.vocab))))
@@ -132,7 +133,9 @@ def text_to_embeddings(input_file, model_path, word_vec_length, doc_length, n_do
         print("n_docs: {0:d}".format(n_docs))
 
     print("Loading embedding model, this can take some time...")
-    model = Wordsim.load_vector(model_path)
+    #model = Wordsim.load_vector(model_path)
+    #model = Word2Vec.load_word2vec_format(model_path, binary=True)
+    model = gensim.models.KeyedVectors.load(model_path)
     print("Loading spaCy model, this can take some time...")
     nlp = English()
 

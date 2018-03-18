@@ -14,7 +14,7 @@ import sys
 import time
 import datetime
 import math
-sys.path.append('/datadrive/ML/jasper/python/data_wrangler/')
+sys.path.append('/media/jasper/ssd-data/ws/InfyNLPChallenge/data-wrangler')
 import eval
 import argparse
 

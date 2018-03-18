@@ -10,18 +10,18 @@ import time
 import datetime
 import data_helper
 import argparse
-from spacy.en import English
+from spacy.lang.en import English
 
 from tensorflow.contrib import learn
 
 import train
 
 from tsa_inf_cnn import TsaInfCnnMapping
-sys.path.append("/datadrive/ML/jasper/python/data_wrangler/")
+sys.path.append('/media/jasper/ssd-data/ws/InfyNLPChallange/data-wrangler/')
 import eval
 import text_to_embeddings
 import data_wrangler
-sys.path.append('/datadrive/ML/jasper/python/embedding-evaluation/wordsim/')
+sys.path.append('/media/jasper/ssd-data/ws/embedding-evaluation/wordsim/')
 from wordsim import Wordsim
 
 FORMAT_ID = ["jinho", "godin"]
@@ -110,6 +110,7 @@ def config_eval_multi_test(config, verbose=0, as_ensemble=True):
                 y_gold = np.argmax(y_test, 1)
                 eval_score = eval.get_eval_metric(y_gold, y_pred, test_path_config["eval_metric"],
                                                   test_path_config["eval_labels"])
+                eval.print_results(y_gold, y_pred)
                 print("The ensemble {0:s} score ({1:d}/{2:d}) is: {3:s}"
                       .format(test_path_config["eval_metric"], model_id+1, n_models, str(eval_score)))
             else:
@@ -121,9 +122,9 @@ def config_eval_multi_test(config, verbose=0, as_ensemble=True):
             y_gold = np.argmax(y_test, 1)
             eval_score = eval.get_eval_metric(y_gold, y_pred, test_path_config["eval_metric"],
                                               test_path_config["eval_labels"])
+            eval.print_results(y_gold, y_pred)
             print("The {0:s} score ({1:d}/{2:d}) is: {3:s}"
                   .format(test_path_config["eval_metric"], model_id + 1, n_models, str(eval_score)))
-
     return eval_score, std, y_pred, y_score
 
 
@@ -186,6 +187,7 @@ def config_eval(config, verbose=0, as_ensemble=True):
                 y_pred = np.argmax(y_score, 1)
                 y_gold = np.argmax(y_test, 1)
                 eval_score = eval.get_eval_metric(y_gold, y_pred, config["eval_metric"], config["eval_labels"])
+                eval.print_results(y_gold, y_pred)
                 print("The ensemble {0:s} score ({1:d}/{2:d}) is: {3:s}"
                       .format(config["eval_metric"], model_id+1, n_models, str(eval_score)))
             else:
@@ -196,9 +198,9 @@ def config_eval(config, verbose=0, as_ensemble=True):
             y_pred = np.argmax(y_score, 1)
             y_gold = np.argmax(y_test, 1)
             eval_score = eval.get_eval_metric(y_gold, y_pred, config["eval_metric"], config["eval_labels"])
+            eval.print_results(y_gold, y_pred)
             print("The {0:s} score ({1:d}/{2:d}) is: {3:s}"
                   .format(config["eval_metric"], model_id + 1, n_models, str(eval_score)))
-
     return eval_score, std, y_pred, y_score
 
 

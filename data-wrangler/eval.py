@@ -42,7 +42,7 @@ def print_results(y_gold, y_pred):
     print("Total number of test examples: {}".format(len(y_gold)))
     label_names = unique_labels(y_gold, y_pred)
     conf_mat = confusion_matrix(y_gold, y_pred, label_names)
-    #print("Confustion matrix:\n" + str(conf_mat))
+    print("Confustion matrix:\n" + str(conf_mat))
     recall = []
     precision = []
     f1 = []
